@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Mileage Plus Program</title> <!-- should be called United Skies... -->
+
+	<script type="text/javascript" src="jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="checkScroll.js"></script>
+	<style type="text/css">
+
+		body {
+			margin: 0;
+			font-family: helvetica, arial, sans-serif;
+		}
+
+		button {
+			padding: 10px;
+		}
+
+		form {
+			box-sizing: border-box;
+		}
+
+		input {
+			box-sizing: border-box;
+			box-sizing: border-box;
+		    width: 100%;
+		    padding: 11px;
+		    margin: 12px 0;
+		    border: 1px solid black;
+		}
+
+		a {
+			color:black;
+		}
+
+		a.terms {
+			color:blue;
+		}
+
+		input.submit {
+			width:50%;
+			float: right;
+		}
+
+		input.money {
+			width:90%;
+			float: right;
+		}
+		input.moneyDouble {
+			width:90%;
+			float: right;
+		}
+
+		div.header {
+			position: fixed;
+			width:100%;
+			height: 80px;
+			z-index: 1;
+		}
+
+		div.tab {
+			width:20%;
+			height: 100%;
+			float: left;
+			background: #e6e6e6;
+			border: 1px solid black;
+			box-sizing: border-box;
+			padding-top: 30px;
+			text-align: center;
+			border-right: 0;
+		}
+
+		div#intro-tab {
+			border-bottom: 0;
+			background: white;
+		}
+
+		div.padder {
+			height: 80px;
+		}
+
+		div.section {
+			position: relative;
+			width:100%;
+			height: 700px;
+			border-bottom: 1px solid black;
+			box-sizing: border-box;
+			padding: 50px;
+		}
+
+		div.link-to {
+			position: absolute;
+			top: -80px;
+		}
+
+		div#bottom {
+			height: 900px;
+		}
+
+		img#header {
+			width: 100%;
+			height: 100%;
+		}
+
+		div.title {
+			position: absolute;
+			color: black;
+			width:700px;
+			left: 50%;
+		    margin-left: -350px;
+		    top: 200px;
+		}
+
+		span.title {
+			font-weight: 900;
+			font-size: 4em;
+		}
+
+		span.subhead {
+			font-size: 2em;
+		}
+
+		div.learn {
+			position: absolute;
+		    left: 50%;
+		    margin-left: -350px;
+		    top: 400px;
+		    color: black;
+		}
+
+		div.signin {
+			position: absolute;
+		    left: 50%;
+		    /*margin-left: -350px;*/
+		    top: 400px;
+		    color: black;
+		}
+
+		div.calltoaction {
+			background: #fff;
+			width: 300px;
+			height: 50px;
+			margin-top: 20px;
+			padding-top: 15px;
+			box-sizing: border-box;
+			border:1px solid black;
+			text-align: center;
+		}
+
+		div.box {
+			margin: 20px 0;
+			box-sizing: border-box;
+			width: 100%;
+			height: 90%;
+			border:1px solid black;
+		}
+
+		div.third {
+			position: relative;
+			float: left;
+			width:33%;
+			height: 100%;
+			border-right: 1px solid black;
+			box-sizing: border-box;
+			padding:20px;
+			/*overflow: scroll;*/
+		}
+
+		div#last {
+			border-right: none;
+		}
+
+		div#rewards {
+			border-right: none;
+			padding:0;
+		}
+
+		div#redemption {
+			border-right: none;
+			padding:0;
+		}
+
+		div.item {
+			width:100%;
+			border-bottom: 1px solid black;
+			border-right: 1px solid black;
+			height: 90px;
+			box-sizing: border-box;
+			padding:20px;
+			font-size: 18px;
+		}
+
+		div#lastReward {
+			border-bottom:none;
+		}
+
+		img.placeholder {
+			width: 100%;
+			height: 200px;
+		}
+
+		img#banner {
+			height: 250px;
+		}
+
+		span.header {
+			font-weight: bold;
+		}
+
+		div.joinText {
+			position: absolute;
+		    top: 120px;
+		    width: 600px;
+		    left: 50%;
+		    margin-left: -300px;
+		    text-align: center;
+		}
+
+		div.halfBox {
+			width: 50%;
+			box-sizing: border-box;
+			border-right: 1px solid black;
+			height: 64%;
+			float: left;
+			padding:25px;
+		}
+
+		div.lastBox {
+			border-right: none;
+			padding-right: 0;
+		}
+
+		div.firstBox {
+			padding-left: 0;
+		}
+
+		div.aboutUS {
+			position: relative;
+			width:50%;
+			box-sizing: border-box;
+			float: left;
+			padding-right:25px;
+		}
+
+		div.aboutLeft {
+			padding-right: 0;
+			padding-left: 25px;
+		}
+
+		span.cashSign {
+			float:left;
+			font-size: 24px;
+			padding-top: 24px;
+		}
+
+		span.on {
+			display: block;
+			float:left;
+		}
+
+		span.earn {
+			float:right;
+			font-weight: bold;
+		}
+
+
+		span.standard-result {
+			float:right;
+			font-weight: bold;
+		}
+
+		span.double-result {
+			float:right;
+			font-weight: bold;
+		}
+
+		div.container {
+			height: 70px;
+		}
+
+
+	</style>
+</head>
+<body>
+
+	<div class="header">
+		<a href="#intro"><div class="tab" id="intro-tab">Intro</div></a>
+		<a href="#earn"><div class="tab" id="earn-tab">Earn Miles</div></a>
+		<a href="#use"><div class="tab" id="use-tab">Use Miles</div></a>
+		<a href="#join"><div class="tab" id="join-tab">Join Us</div></a>
+		<a href="#about"><div class="tab" id="about-tab">About Us</div></a>
+	</div>
+
+	<div class="padder"></div>
+
+	<div class="content">
+		<div class="section">
+			<div class="link-to" id="intro"></div>
+			<div class="title">
+				<span class="title">MileagePlus Program</span> <!-- optionaly UnitedSkies -->
+				<br>
+				<span class="subhead">The best way to travel. Period.</span> <!-- travel with US -->
+			</div>
+			<div class="learn">
+				<span class="learn">The world's most rewarding community</span>
+				<a href="#earn"><div class="calltoaction">Learn More</div></a>
+			</div>
+			<div class="signin">
+				<span class="learn">Already a member?</span>
+				<a href="#"><div class="calltoaction">Sign In</div></a>
+			</div>
+			<img id="header" src="images/largeRect.png">
+		</div>
+
+		<div class="section">
+			<div class="link-to" id="earn"></div>
+			<h2>Calculate Rewards</h2>
+			<div class="box">
+				<div class="third" id="rewards">
+					<div class="item reward">flights</div>
+					<div class="item reward">travel</div>
+					<div class="item reward">shopping</div>
+					<div class="item reward">dining</div>
+					<div class="item reward">credit</div>
+					<div class="item reward" id="lastReward">other stuff</div>
+				</div>
+				<div class="third">
+					<h3>MileagePlus Standard</h3>
+					<hr>
+					<img class="placeholder" src="images/rect.png">
+					<div class="container">
+						<span>Earning rewards is easy. When you spend</span>
+						<input class="money" type="text" name="fname" placeholder="Dollar Amount"><span class="cashSign">$</span><br>
+					</div>
+					<div class="container">
+						<span class="on">on things like:</span><span> </span><span class="earn">flights</span>
+					<br>
+					</div>
+					<div class="container">
+						<span class="on">you earn: </span><span class="standard-result">miles</span>
+					</div>
+				</div>
+				<div class="third" id="last">
+					<h3>MileagePlus Premier</h3>
+					<hr>
+					<img class="placeholder" src="images/rect.png">
+					<div class="container">
+						<span>Earn double rewards with Premiere. When you spend</span>
+						<input class="moneyDouble" type="text" name="fname" placeholder="Dollar Amount"><span class="cashSign">$</span><br>
+					</div>
+					<div class="container">
+						<span class="on">on things like:</span><span> </span><span class="earn">flights</span>
+					</div>
+					<div class="container">
+						<span class="on">you earn: </span><span class="double-result">miles</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="section">
+			<div class="link-to" id="use"></div>
+			<h2>Use Your Miles</h2>
+			<div class="box">
+				<div class="third" id="redemption">
+					<div class="item redeem">flights</div>
+					<div class="item redeem">travel</div>
+					<div class="item redeem">shopping</div>
+					<div class="item redeem">dining</div>
+					<div class="item redeem">credit</div>
+					<div class="item redeem" id="lastReward">everything else</div>
+				</div>
+				<div class="third">
+					<h3>MileagePlus Standard</h3>
+					<hr>
+					<img class="placeholder" src="images/rect.png">
+					<span class="header">redeem your miles for </span><span class="header use">benefits</span>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+					consequat.</p>
+					<button>Learn More</button>
+				</div>
+				<div class="third" id="last">
+					<h3>MileagePlus Premier</h3>
+					<hr>
+					<img class="placeholder" src="images/rect.png">
+					<span class="header">Premiere means extra </span><span class="header use">benefits</span>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+					consequat.</p>
+					<button>Learn More</button>
+				</div>
+			</div>
+		</div>
+		<div class="section">
+			<div class="link-to" id="join"></div>
+			<img class="placeholder" id="banner" src="images/longRect.png">
+			<div class="joinText">
+				<h2>The community where the sky is literally the limit.</h2>
+				<h2>Join Us.</h2>
+			</div>
+			<div class="halfBox firstBox">
+				<h3>MileagePlus Standard</h3>
+				<form action="demo_form.asp">
+				  	<input type="text" name="fname" placeholder="Full Name"><br>
+				  	<input type="text" name="lname" placeholder="Email Address"><br>
+				  	<input type="text" name="lname" placeholder="Set Password"><br>
+				  	<input type="text" name="lname" placeholder="Confirm Password"><br>
+				  	<input type="submit" class="submit" value="Submit">
+				</form>
+			</div>
+			<div class="halfBox lastBox">
+				<h3>MileagePlus Premier</h3>
+				<form action="demo_form.asp">
+				  	<input type="text" name="fname" placeholder="Full Name"><br>
+				  	<input type="text" name="lname" placeholder="Email Address"><br>
+				  	<input type="text" name="lname" placeholder="Set Password"><br>
+				  	<input type="text" name="lname" placeholder="Confirm Password"><br>
+				  	<input type="submit" class="submit" value="Submit">
+				</form>
+			</div>
+		</div>
+		<div class="section" id="bottom">
+			<div class="link-to" id="about"></div>
+			<div class="aboutUS">
+				<h2>Terms and Conditions</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				<a class="terms" href="#">learn more</a>
+				<hr>
+			</div>
+			<div class="aboutUS aboutLeft">
+				<h2>Manage Account</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				<a class="terms" href="#">learn more</a>
+				<hr>
+			</div>
+			<div class="aboutUS">
+				<h2>Program Rules</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				<a class="terms" href="#">learn more</a>
+				<hr>
+			</div>
+			<div class="aboutUS aboutLeft">
+				<h2>Credit Card</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				<a class="terms" href="#">learn more</a>
+				<hr>
+			</div>
+			<div class="aboutUS">
+				<h2>Buy, Transfer, Donate</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				<a class="terms" href="#">learn more</a>
+			</div>
+			<div class="aboutUS aboutLeft">
+				<h2>Partners</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				<a class="terms" href="#">learn more</a>
+			</div>
+		</div>
+	</div>
+
+<script>
+	$(".header a").click(function(){
+			var menuID = $(this).attr("href");
+			$("body, html").animate({scrollTop: $(menuID).offset().top}, "slow");
+			return false;
+	});
+
+	$(".learn a").click(function(){
+			var menuID = $(this).attr("href");
+			$("body, html").animate({scrollTop: $(menuID).offset().top}, "slow");
+			return false;
+	});
+</script>
+
+<script type="text/javascript" src="function.js"></script>
+
+
+</body>
+</html>
